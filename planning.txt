@@ -1,0 +1,91 @@
+Product Requirement Document (PRD)
+Produk: Aplikasi Manajemen Peternakan Ayam Petelur (Skala 20 ekor)
+Techstack: HTML, CSS, JavaScript, Tailwind, SQLite
+
+1. Ringkasan Eksekutif
+Aplikasi ini bertujuan membantu pencatatan harian peternakan ayam petelur skala kecil. Fokus utama adalah pencatatan telur, manajemen pakan, dan keuangan dengan antarmuka sederhana, offline, dan mudah digunakan.
+
+2. Tujuan & Problem Statement
+Masalah: Pencatatan manual (kertas/Excel) rawan hilang, sulit analisis, dan tidak terintegrasi.
+
+Tujuan: Membuat aplikasi sederhana berbasis web dengan database SQLite agar pencatatan lebih rapi, portable, dan bisa menghasilkan laporan otomatis.
+
+3. User Personas
+Peternak skala kecil (owner sendiri) → Input data harian telur, pakan, dan transaksi.
+
+Pengguna tunggal (offline) → Tidak ada kebutuhan multi-user.
+
+4. Fitur Utama
+Pencatatan Telur
+
+Input jumlah telur harian.
+
+Laporan mingguan/bulanan (grafik sederhana).
+
+Manajemen Pakan
+
+Catat stok masuk/keluar.
+
+Reminder stok hampir habis.
+
+Keuangan
+
+Catat pemasukan (penjualan telur) dan pengeluaran (pakan, listrik, dll).
+
+Laporan profit/loss sederhana.
+
+Dashboard
+
+Ringkasan: total telur bulan ini, stok pakan, saldo keuangan.
+
+5. Ruang Lingkup & Batasan
+Termasuk: CRUD data telur, pakan, keuangan; laporan sederhana; dashboard.
+
+Tidak termasuk: Multi-user, integrasi cloud, IoT sensor.
+
+6. Struktur Database (SQLite)
+sql
+CREATE TABLE telur (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tanggal DATE NOT NULL,
+    jumlah INTEGER NOT NULL
+);
+
+CREATE TABLE pakan (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tanggal DATE NOT NULL,
+    jumlah_kg REAL NOT NULL,
+    keterangan TEXT
+);
+
+CREATE TABLE keuangan (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tanggal DATE NOT NULL,
+    tipe TEXT CHECK(tipe IN ('pemasukan','pengeluaran')),
+    jumlah REAL NOT NULL,
+    deskripsi TEXT
+);
+7. Struktur Folder
+Code
+farm-management/
+├── backend/
+│   ├── db/farm.db
+│   ├── models/ (telur.js, pakan.js, keuangan.js)
+│   ├── routes/ (telurRoutes.js, pakanRoutes.js, keuanganRoutes.js)
+│   ├── server.js
+│   └── config.js
+├── frontend/
+│   ├── css/style.css
+│   ├── js/ (main.js, api.js)
+│   ├── pages/ (index.html, telur.html, pakan.html, keuangan.html)
+│   └── components/ (navbar.html, footer.html)
+└── docs/README.md
+
+8. Kriteria Kesuksesan
+Data harian bisa dicatat dengan mudah.
+
+Laporan mingguan/bulanan otomatis tersedia.
+
+Aplikasi berjalan offline tanpa internet.
+
+Database SQLite portable (cukup satu file .db).

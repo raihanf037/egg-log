@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Telur - Egg Farm Management</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+  <!-- Navbar -->
+  <object type="text/html" data="../components/navbar.html" class="w-full"></object>
+
+  <main class="flex-1 container mx-auto p-4">
+    <h1 class="text-2xl font-semibold mb-4">Pencatatan Telur</h1>
+    <!-- Form -->
+    <form id="egg-form" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 bg-white p-4 rounded shadow">
+      <div>
+        <label class="block text-sm font-medium mb-1" for="tanggal">Tanggal</label>
+        <input type="date" name="tanggal" id="tanggal" required class="w-full border rounded px-2 py-1" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium mb-1" for="jumlah">Jumlah Telur</label>
+        <input type="number" name="jumlah" id="jumlah" required class="w-full border rounded px-2 py-1" />
+      </div>
+      <div class="col-span-2">
+        <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Tambah</button>
+      </div>
+    </form>
+
+    <!-- Table -->
+    <table id="egg-table" class="min-w-full bg-white rounded shadow overflow-hidden">
+      <thead class="bg-gray-200">
+        <tr>
+          <th class="px-4 py-2 text-left">Tanggal</th>
+          <th class="px-4 py-2 text-left">Jumlah</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-100"></tbody>
+    </table>
+
+    <!-- Chart -->
+    <div class="mt-6 h-64">
+      <canvas id="eggChart"></canvas>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <object type="text/html" data="../components/footer.html" class="w-full"></object>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
